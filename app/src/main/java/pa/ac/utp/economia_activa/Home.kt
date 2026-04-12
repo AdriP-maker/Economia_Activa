@@ -9,9 +9,8 @@ import android.os.Handler
 
 class Home : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.Theme_Economia_Activa) //vulve al tema principal
         super.onCreate(savedInstanceState)
-        setContentView(/* layoutResID = */ R.layout.activity_home)
+        setContentView(/* layoutResID = */ R.layout.activity_home) // utiliza el layout home
 
         // Delay de 2 segundos y luego ir a MainActivity
         Handler(Looper.getMainLooper()).postDelayed({
