@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/colorCardBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="12dp">
+
+        <!-- Checkbox / Estado -->
+        <ImageView
+            android:id="@+id/btnCheckItem"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:contentDescription="Marcar comprado"
+            android:src="@drawable/ic_checkbox_unchecked" />
+
+        <!-- Info del Producto -->
+        <LinearLayout
+            android:id="@+id/lyProductInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp">
+
+            <TextView
+                android:id="@+id/tvItemName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre del Producto"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvItemSubtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Categoría • Cantidad x Precio"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Total del Item -->
+        <TextView
+            android:id="@+id/tvItemTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:text="$0.00"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <!-- Botón editar -->
+        <ImageView
+            android:id="@+id/btnEditItem"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="Editar producto"
+            android:src="@drawable/ic_edit"
+            app:tint="@color/colorSecondary" />
+
+        <!-- Botón eliminar -->
+        <ImageView
+            android:id="@+id/btnDeleteItem"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="Eliminar producto"
+            android:src="@drawable/ic_delete" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

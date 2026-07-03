@@ -1,3 +1,56 @@
 <resources>
-    <string name="app_name">Economia Activa</string>
+    <string name="app_name">Economía Activa</string>
+    
+    <!-- Secciones del Dashboard -->
+    <string name="title_compras">Organizar Compras</string>
+    <string name="desc_compras">Crear listas y comparar precios</string>
+    <string name="title_gastos">Control de Gastos</string>
+    <string name="desc_gastos">Registros diarios y servicios fijos</string>
+    <string name="title_analisis">Análisis de Hábitos</string>
+    <string name="desc_analisis">Gráficos de consumo y reportes</string>
+    <string name="title_ahorro">Ahorro Inteligente</string>
+    <string name="desc_ahorro">Consejos y alertas de presupuesto</string>
+    
+    <!-- Resumen Financiero -->
+    <string name="resumen_financiero">Resumen Financiero Mensual</string>
+    <string name="presupuesto_mensual">Presupuesto</string>
+    <string name="total_gastado">Gastado</string>
+    <string name="balance_disponible">Disponible</string>
+    <string name="ahorro_estimado">Ahorro Estimado</string>
+    
+    <!-- Listas de Compras -->
+    <string name="listas_activas">Listas Activas</string>
+    <string name="listas_historial">Historial de Listas</string>
+    <string name="crear_nueva_lista">Nueva Lista de Compras</string>
+    <string name="btn_crear">Crear</string>
+    <string name="btn_cancelar">Cancelar</string>
+    <string name="hint_nombre_lista">Ej. Compras del Mes, Supermercado</string>
+    <string name="hint_presupuesto">Presupuesto límite ($)</string>
+    <string name="lista_vacia">No hay listas creadas. ¡Toca + para empezar!</string>
+    
+    <!-- Detalles de Lista -->
+    <string name="agregar_producto">Agregar Producto</string>
+    <string name="finalizar_lista">Finalizar y Registrar Gasto</string>
+    <string name="advertencia_presupuesto">¡Cuidado! Has superado el presupuesto asignado.</string>
+    <string name="casi_presupuesto">Estás cerca del límite del presupuesto.</string>
+    <string name="hint_nombre_producto">Nombre del producto</string>
+    <string name="hint_cantidad">Cantidad</string>
+    <string name="hint_precio">Precio estimado ($)</string>
+    
+    <!-- Gastos -->
+    <string name="registrar_gasto">Registrar Gasto</string>
+    <string name="gastos_recientes">Gastos Recientes</string>
+    <string name="gastos_periodicos">Gastos Fijos / Servicios</string>
+    <string name="nuevo_gasto_periodico">Nuevo Servicio Recurrente</string>
+    <string name="hint_concepto">Concepto (ej. Luz, Alquiler, Internet)</string>
+    <string name="hint_monto">Monto mensual ($)</string>
+    <string name="hint_dia_pago">Día de pago (1 al 31)</string>
+    
+    <!-- Categorías -->
+    <string name="cat_alimentos">Alimentos y Super</string>
+    <string name="cat_servicios">Servicios Básicos</string>
+    <string name="cat_transporte">Transporte</string>
+    <string name="cat_salud">Salud</string>
+    <string name="cat_ocio">Entretenimiento / Ocio</string>
+    <string name="cat_otros">Otros Gastos</string>
 </resources>

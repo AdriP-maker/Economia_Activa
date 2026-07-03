@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Nombre del producto Autocompletado -->
+    <AutoCompleteTextView
+        android:id="@+id/actvProductName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_nombre_producto"
+        android:completionThreshold="1"
+        android:inputType="textCapSentences"
+        android:layout_marginBottom="12dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="12dp"
+        android:weightSum="2">
+
+        <!-- Cantidad -->
+        <EditText
+            android:id="@+id/etProductQty"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_cantidad"
+            android:layout_marginEnd="6dp"
+            android:inputType="numberDecimal" />
+
+        <!-- Precio -->
+        <EditText
+            android:id="@+id/etProductPrice"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_precio"
+            android:layout_marginStart="6dp"
+            android:inputType="numberDecimal" />
+    </LinearLayout>
+
+    <!-- Escáner de Código de Barras -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="12dp"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/etBarcode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Código de barras"
+            android:inputType="number" />
+
+        <ImageButton
+            android:id="@+id/btnScanBarcode"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Escanear"
+            android:scaleType="fitCenter"
+            android:padding="8dp"
+            android:src="@drawable/ic_barcode" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Categoría del producto:"
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="12sp"
+        android:layout_marginBottom="4dp" />
+
+    <!-- Categoría -->
+    <Spinner
+        android:id="@+id/spinnerCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp" />
+
+</LinearLayout>

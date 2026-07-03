@@ -2,4 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#2E7D32</color>
+    <color name="colorPrimaryDark">#1B5E20</color>
+    <color name="colorSecondary">#1565C0</color>
+    <color name="colorAccent">#FBC02D</color>
+    <color name="colorBackground">#F8F9FA</color>
+    <color name="colorCardBackground">#FFFFFF</color>
+    <color name="colorTextPrimary">#212121</color>
+    <color name="colorTextSecondary">#757575</color>
+    <color name="colorDanger">#C62828</color>
+    <color name="colorWarning">#EF6C00</color>
+    <color name="colorSuccess">#2E7D32</color>
+    <color name="colorAccentLight">#FFF9C4</color>
 </resources>

@@ -5,86 +5,414 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4CAF50"
-    android:backgroundTint="#4CAF50"
+    android:background="@color/colorBackground"
     tools:context=".MainActivity">
 
+    <!-- Header verde superior -->
+    <View
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvAppName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#4CAF50"
-        android:backgroundTint="#4CAF50"
-        android:foregroundTint="#4CAF50"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
         android:text="@string/app_name"
-        android:textColor="#FDE41B"
-        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvAppMotto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:text="Compras Inteligentes y Ahorro Familiar"
+        android:textColor="#E8F5E9"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAppName" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.058"
-        tools:ignore="TextContrastCheck" />
+        app:layout_constraintTop_toBottomOf="@id/tvAppMotto">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="224dp"
-        android:layout_height="220dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@mipmap/logo_carrito_round" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
 
-    <androidx.gridlayout.widget.GridLayout
-        android:layout_width="405dp"
-        android:layout_height="425dp"
-        android:layout_marginEnd="3dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="1.0">
+            <!-- Card de Resumen Financiero -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="@color/colorCardBackground">
 
-        <androidx.cardview.widget.CardView
-            style="@style/SaludCardStyle"
-            android:layout_width="186dp"
-            android:layout_height="191dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
-            app:cardBackgroundColor="#FFFEFE"
-            app:layout_column="0"
-            app:layout_row="2" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp">
 
-        <androidx.cardview.widget.CardView
-            style="@style/SaludCardStyle"
-            android:layout_width="185dp"
-            android:layout_height="191dp"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="@string/resumen_financiero"
+                            android:textColor="@color/colorTextPrimary"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
-            app:cardBackgroundColor="#FBFBFB"
-            app:layout_column="0"
-            app:layout_row="0" />
+                        <ImageView
+                            android:id="@+id/btnEditBudget"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_alignParentEnd="true"
+                            android:contentDescription="Editar presupuesto"
+                            android:src="@drawable/ic_edit" />
+                    </RelativeLayout>
 
-        <androidx.cardview.widget.CardView
-            style="@style/SaludCardStyle"
-            android:layout_width="186dp"
-            android:layout_height="191dp"
+                    <!-- Fila de Valores: Presupuesto, Gastado, Disponible -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="3"
+                        android:layout_marginBottom="20dp">
 
-            app:cardBackgroundColor="#FFFEFE"
-            app:layout_column="1"
-            app:layout_row="0" />
+                        <!-- Presupuesto -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
 
-        <androidx.cardview.widget.CardView
-            style="@style/SaludCardStyle"
-            android:layout_width="186dp"
-            android:layout_height="191dp"
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/presupuesto_mensual"
+                                android:textColor="@color/colorTextSecondary"
+                                android:textSize="12sp" />
 
-            app:cardBackgroundColor="#FFFEFE"
-            app:layout_column="1"
-            app:layout_row="2" />
+                            <TextView
+                                android:id="@+id/tvBudgetVal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="$0.00"
+                                android:textColor="@color/colorTextPrimary"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
 
-    </androidx.gridlayout.widget.GridLayout>
+                        <!-- Gastado -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/total_gastado"
+                                android:textColor="@color/colorTextSecondary"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/tvSpentVal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="$0.00"
+                                android:textColor="@color/colorDanger"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- Disponible -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/balance_disponible"
+                                android:textColor="@color/colorTextSecondary"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/tvRemainingVal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="$0.00"
+                                android:textColor="@color/colorSuccess"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Barra de progreso -->
+                    <ProgressBar
+                        android:id="@+id/budgetProgressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:max="100"
+                        android:progress="0"
+                        android:progressTint="@color/colorPrimary" />
+
+                    <TextView
+                        android:id="@+id/tvPercentageSpent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="6dp"
+                        android:text="0% gastado"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="11sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Sección de Herramientas -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="Módulos del Sistema"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.gridlayout.widget.GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:columnCount="2"
+                app:rowCount="2">
+
+                <!-- Card 1: Compras -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardShopping"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="3dp"
+                    app:cardBackgroundColor="@color/colorCardBackground"
+                    app:layout_columnWeight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        android:gravity="center_horizontal">
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_cart"
+                            android:contentDescription="Organizar Compras" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="@string/title_compras"
+                            android:textColor="@color/colorTextPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/desc_compras"
+                            android:textColor="@color/colorTextSecondary"
+                            android:textSize="11sp"
+                            android:gravity="center" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Card 2: Gastos -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardExpenses"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="3dp"
+                    app:cardBackgroundColor="@color/colorCardBackground"
+                    app:layout_columnWeight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        android:gravity="center_horizontal">
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_wallet"
+                            android:contentDescription="Control de Gastos" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="@string/title_gastos"
+                            android:textColor="@color/colorTextPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/desc_gastos"
+                            android:textColor="@color/colorTextSecondary"
+                            android:textSize="11sp"
+                            android:gravity="center" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Card 3: Reportes -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardReports"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="3dp"
+                    app:cardBackgroundColor="@color/colorCardBackground"
+                    app:layout_columnWeight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        android:gravity="center_horizontal">
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_chart"
+                            android:contentDescription="Análisis de Consumo" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="@string/title_analisis"
+                            android:textColor="@color/colorTextPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/desc_analisis"
+                            android:textColor="@color/colorTextSecondary"
+                            android:textSize="11sp"
+                            android:gravity="center" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Card 4: Consejos -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardTips"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="3dp"
+                    app:cardBackgroundColor="@color/colorCardBackground"
+                    app:layout_columnWeight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        android:gravity="center_horizontal">
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_tips"
+                            android:contentDescription="Ahorro Inteligente" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="@string/title_ahorro"
+                            android:textColor="@color/colorTextPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/desc_ahorro"
+                            android:textColor="@color/colorTextSecondary"
+                            android:textSize="11sp"
+                            android:gravity="center" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </androidx.gridlayout.widget.GridLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

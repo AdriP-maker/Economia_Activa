@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+
+    <!-- Custom Toolbar -->
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:contentDescription="Regresar"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@id/btnBack"
+            android:text="Control de Gastos"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <!-- Selector de Pestañas (Gastos vs Servicios) -->
+    <LinearLayout
+        android:id="@+id/tabContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:background="@color/white"
+        android:elevation="2dp"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <Button
+            android:id="@+id/btnTabDaily"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="Gastos Diarios"
+            android:textColor="@color/colorPrimary"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnTabFixed"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="Servicios Fijos"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tabContainer"
+        android:fillViewport="true">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <!-- VISTA 1: Gastos Diarios -->
+            <LinearLayout
+                android:id="@+id/layoutDailyExpenses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <!-- Formulario Agregar Gasto -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="3dp"
+                    app:cardBackgroundColor="@color/colorCardBackground">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Registrar Nuevo Gasto"
+                            android:textColor="@color/colorTextPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="12dp" />
+
+                        <EditText
+                            android:id="@+id/etDailyConcept"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Concepto (ej. Almuerzo, Uber, Farmacia)"
+                            android:textColor="@color/colorTextPrimary"
+                            android:textColorHint="@color/colorTextSecondary"
+                            android:inputType="textCapSentences"
+                            android:layout_marginBottom="8dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="12dp"
+                            android:weightSum="2">
+
+                            <EditText
+                                android:id="@+id/etDailyAmount"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:hint="Monto ($)"
+                                android:textColor="@color/colorTextPrimary"
+                                android:textColorHint="@color/colorTextSecondary"
+                                android:layout_marginEnd="6dp"
+                                android:inputType="numberDecimal" />
+
+                            <Spinner
+                                android:id="@+id/spinnerDailyCategory"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="6dp" />
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/btnSaveDailyExpense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Agregar Gasto"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Historial Reciente"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- RecyclerView Historial Gastos -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvExpensesHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false" />
+
+                <TextView
+                    android:id="@+id/tvDailyEmpty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No hay gastos registrados en el historial."
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="14sp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+
+            <!-- VISTA 2: Servicios Fijos -->
+            <LinearLayout
+                android:id="@+id/layoutFixedExpenses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Formulario Agregar Servicio Fijo -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="3dp"
+                    app:cardBackgroundColor="@color/colorCardBackground">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Registrar Servicio Recurrente"
+                            android:textColor="@color/colorTextPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="12dp" />
+
+                        <EditText
+                            android:id="@+id/etFixedConcept"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Nombre del Servicio (ej. Alquiler, Wifi)"
+                            android:textColor="@color/colorTextPrimary"
+                            android:textColorHint="@color/colorTextSecondary"
+                            android:inputType="textCapSentences"
+                            android:layout_marginBottom="8dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="12dp"
+                            android:weightSum="3">
+
+                            <EditText
+                                android:id="@+id/etFixedAmount"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:hint="Monto ($)"
+                                android:textColor="@color/colorTextPrimary"
+                                android:textColorHint="@color/colorTextSecondary"
+                                android:layout_marginEnd="4dp"
+                                android:inputType="numberDecimal" />
+
+                            <EditText
+                                android:id="@+id/etFixedDay"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:hint="Día pago"
+                                android:textColor="@color/colorTextPrimary"
+                                android:textColorHint="@color/colorTextSecondary"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="4dp"
+                                android:inputType="number" />
+
+                            <Spinner
+                                android:id="@+id/spinnerFixedCategory"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="4dp" />
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/btnSaveFixedExpense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Registrar Servicio"
+                            android:backgroundTint="@color/colorSecondary"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Servicios Activos"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- RecyclerView Servicios Fijos -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPeriodicExpenses"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false" />
+
+                <TextView
+                    android:id="@+id/tvFixedEmpty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No hay servicios fijos registrados."
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="14sp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+
+        </FrameLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

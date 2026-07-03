@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Vista de escaneo con su previsualización por defecto -->
+    <com.journeyapps.barcodescanner.DecoratedBarcodeView
+        android:id="@+id/zxing_barcode_scanner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Capa de superposición personalizada: Recuadro verde para guiar el código de barra -->
+    <View
+        android:id="@+id/custom_viewfinder_frame"
+        android:layout_width="280dp"
+        android:layout_height="160dp"
+        android:layout_gravity="center"
+        android:background="@drawable/scanner_border" />
+
+    <!-- Texto de instrucción flotante -->
+    <TextView
+        android:id="@+id/tvScanPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="60dp"
+        android:text="Alinea el código de barras dentro del recuadro"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:background="#80000000"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp" />
+
+</FrameLayout>

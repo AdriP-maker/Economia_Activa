@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="categories_array">
+        <item>@string/cat_alimentos</item>
+        <item>@string/cat_servicios</item>
+        <item>@string/cat_transporte</item>
+        <item>@string/cat_salud</item>
+        <item>@string/cat_ocio</item>
+        <item>@string/cat_otros</item>
+    </string-array>
+</resources>
