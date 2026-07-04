@@ -684,4 +684,13 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         cursor.close()
         return list
     }
+
+    fun clearAllData() {
+        val db = this.writableDatabase
+        db.delete(TABLE_ITEMS, null, null)
+        db.delete(TABLE_PRODUCTS, null, null)
+        db.delete(TABLE_LISTS, null, null)
+        db.delete(TABLE_PERIODIC_EXPENSES, null, null)
+        db.delete(TABLE_EXPENSE_HISTORY, null, null)
+    }
 }

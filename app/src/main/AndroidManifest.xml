@@ -23,6 +23,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+        <activity android:name=".ui.setup.TermsActivity" />
+        <activity android:name=".ui.setup.SetupActivity" />
+        <activity android:name=".ui.setup.BiometricLoginActivity" />
         <activity android:name=".ui.shopping.ShoppingListsActivity" />
         <activity android:name=".ui.shopping.ShoppingListDetailActivity" />
         <activity

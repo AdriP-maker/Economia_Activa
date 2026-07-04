@@ -44,6 +44,7 @@ dependencies {
     implementation(libs.androidx.gridlayout)
     implementation(libs.androidx.cardview)
     implementation(libs.zxing.embedded)
+    implementation(libs.androidx.biometric)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
