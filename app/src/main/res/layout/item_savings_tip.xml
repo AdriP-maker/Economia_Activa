@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:src="@drawable/ic_tips"
-            android:contentDescription="Icono de sugerencia"
+            android:contentDescription="@string/auto_str_icono_de_sugerencia"
             android:layout_marginEnd="16dp" />
 
         <!-- Textos -->
@@ -35,7 +35,7 @@
                 android:id="@+id/tvTipTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Título del Consejo"
+                android:text="@string/auto_str_t_tulo_del_consejo"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Descripción detallada de la sugerencia o alerta generada."
+                android:text="@string/auto_str_descripci_n_detallada"
                 android:textColor="@color/colorTextSecondary"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -58,7 +58,7 @@
             android:layout_marginStart="12dp"
             android:padding="4dp"
             android:src="@drawable/ic_volume_up"
-            android:contentDescription="Escuchar sugerencia"
+            android:contentDescription="@string/auto_str_escuchar_sugerencia"
             app:tint="@color/colorPrimary"
             android:background="?android:attr/selectableItemBackgroundBorderless"
             android:clickable="true"
@@ -66,3 +66,4 @@
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
+

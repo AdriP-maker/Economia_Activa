@@ -1,39 +1,44 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground">
 
-    <!-- Custom Toolbar -->
-    <RelativeLayout
+    <!-- Toolbar adaptable al modo oscuro -->
+    <LinearLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@color/white"
+        android:layout_height="60dp"
+        android:background="@color/colorSurface"
         android:elevation="4dp"
-        android:paddingStart="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
         android:paddingEnd="16dp">
 
         <ImageView
             android:id="@+id/btnBack"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_centerVertical="true"
-            android:contentDescription="Regresar"
-            android:src="@drawable/ic_back" />
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:contentDescription="@string/auto_str_regresar"
+            android:focusable="true"
+            android:padding="8dp"
+            android:src="@drawable/ic_back"
+            app:tint="@color/colorTextPrimary" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
-            android:layout_toEndOf="@id/btnBack"
-            android:text="Análisis de Consumo"
+            android:layout_weight="1"
+            android:paddingStart="4dp"
+            android:text="@string/auto_str_an_lisis_de_consumo"
             android:textColor="@color/colorTextPrimary"
             android:textSize="18sp"
             android:textStyle="bold" />
-    </RelativeLayout>
+    </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -66,7 +71,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Distribución de Gastos Mensuales"
+                        android:text="@string/auto_str_distribuci_n_de_gasto"
                         android:textColor="@color/colorTextPrimary"
                         android:textSize="15sp"
                         android:textStyle="bold"
@@ -101,7 +106,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Desglose por Categoría"
+                        android:text="@string/auto_str_desglose_por_categor"
                         android:textColor="@color/colorTextPrimary"
                         android:textSize="15sp"
                         android:textStyle="bold"
@@ -120,3 +125,4 @@
     </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>
+

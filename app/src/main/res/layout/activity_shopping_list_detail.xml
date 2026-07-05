@@ -1,26 +1,29 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground">
+    android:background="@color/colorBackground"
+    >
 
     <!-- Toolbar -->
     <RelativeLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/white"
+        android:background="@color/colorSurface"
         android:elevation="4dp"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp">
+        android:paddingEnd="16dp"
+    >
 
         <ImageView
             android:id="@+id/btnBack"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_centerVertical="true"
-            android:contentDescription="Regresar"
+            android:contentDescription="@string/auto_str_regresar"
             android:src="@drawable/ic_back" />
 
         <TextView
@@ -30,11 +33,12 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@id/btnBack"
-            android:text="Detalle de la Lista"
+            android:text="@string/auto_str_detalle_de_la_lista"
             android:textColor="@color/colorTextPrimary"
             android:textSize="18sp"
             android:textStyle="bold" />
-    </RelativeLayout>
+    </RelativeLayout
+    >
 
     <!-- Banner de Alerta de Presupuesto -->
     <TextView
@@ -60,25 +64,28 @@
         android:layout_margin="12dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="3dp"
-        app:cardBackgroundColor="@color/colorCardBackground">
+        app:cardBackgroundColor="@color/colorCardBackground"
+    >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="16dp"
-            android:weightSum="2">
+            android:weightSum="2"
+    >
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+    >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Presupuesto Límite"
+                    android:text="@string/auto_str_presupuesto_l_mite"
                     android:textColor="@color/colorTextSecondary"
                     android:textSize="12sp" />
 
@@ -87,22 +94,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="$0.00"
+                    tools:text="$0.00"
                     android:textColor="@color/colorTextPrimary"
                     android:textSize="18sp"
                     android:textStyle="bold" />
-            </LinearLayout>
+            </LinearLayout
+    >
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+    >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Acumulado"
+                    android:text="@string/auto_str_total_acumulado"
                     android:textColor="@color/colorTextSecondary"
                     android:textSize="12sp" />
 
@@ -111,13 +120,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="$0.00"
+                    tools:text="$0.00"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
                     android:textStyle="bold" />
-            </LinearLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+            </LinearLayout
+    >
+        </LinearLayout
+    >
+    </androidx.cardview.widget.CardView
+    >
 
     <!-- Contenedor del Botón de Finalizar (para pegarlo al final) -->
     <LinearLayout
@@ -127,17 +139,20 @@
         android:layout_alignParentBottom="true"
         android:padding="12dp"
         android:background="@color/colorBackground"
-        android:orientation="vertical">
+        android:orientation="vertical"
+    >
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnFinalizeList"
             android:layout_width="match_parent"
             android:layout_height="52dp"
+            android:background="@drawable/bg_button_primary_gradient"
             android:text="@string/finalizar_lista"
-            android:backgroundTint="@color/colorPrimary"
             android:textColor="@color/white"
-            android:textStyle="bold" />
-    </LinearLayout>
+            android:textStyle="bold"
+            app:backgroundTint="@color/colorPrimaryDark" />
+    </LinearLayout
+    >
 
     <!-- Lista de Productos -->
     <androidx.recyclerview.widget.RecyclerView
@@ -155,7 +170,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="No hay productos en esta lista. ¡Toca + para agregar!"
+        android:text="@string/auto_str_no_hay_productos_en_e"
         android:textColor="@color/colorTextSecondary"
         android:textSize="15sp"
         android:gravity="center"
@@ -174,4 +189,10 @@
         app:backgroundTint="@color/colorSecondary"
         app:tint="@color/white" />
 
-</RelativeLayout>
+</RelativeLayout
+    >
+
+
+
+
+

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -8,76 +9,102 @@
     android:background="@color/colorBackground"
     tools:context=".MainActivity">
 
-    <!-- Header verde superior -->
-    <View
-        android:id="@+id/headerView"
+    <FrameLayout
+        android:id="@+id/headerContainer"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:background="@color/colorPrimary"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_height="280dp"
+        android:paddingTop="28dp"
+        android:background="@drawable/bg_header_gradient">
 
-    <TextView
-        android:id="@+id/tvAppName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/app_name"
-        android:textColor="@color/white"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <!-- Decorative overlay circles -->
+        <View
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="end|top"
+            android:layout_marginTop="-40dp"
+            android:layout_marginEnd="-60dp"
+            android:background="@drawable/bg_circle_overlay"
+            android:alpha="0.15" />
 
-    <ImageView
-        android:id="@+id/btnSettings"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="28dp"
-        android:src="@drawable/ic_settings"
-        app:tint="@color/white"
-        android:contentDescription="Configuración"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="?android:attr/selectableItemBackgroundBorderless"
-        android:clickable="true"
-        android:focusable="true" />
+        <View
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="start|bottom"
+            android:layout_marginStart="-30dp"
+            android:layout_marginBottom="-30dp"
+            android:background="@drawable/bg_circle_overlay"
+            android:alpha="0.10" />
 
-    <TextView
-        android:id="@+id/tvAppMotto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="4dp"
-        android:text="Compras Inteligentes y Ahorro Familiar"
-        android:textColor="#E8F5E9"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvAppName" />
+        <!-- App Name -->
+        <TextView
+            android:id="@+id/tvAppName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/inter"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            android:textStyle="bold" />
 
+        <!-- App Motto -->
+        <TextView
+            android:id="@+id/tvAppMotto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="72dp"
+            android:fontFamily="@font/inter"
+            android:text="@string/app_motto"
+            android:textColor="@color/white"
+            android:alpha="0.9"
+            android:textSize="13sp" />
+
+        <!-- Settings Button -->
+        <ImageView
+            android:id="@+id/btnSettings"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="end|top"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_icon_button_white"
+            android:contentDescription="@string/cd_configuracion"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="12dp"
+            android:src="@drawable/ic_settings"
+            app:tint="@color/white" />
+
+    </FrameLayout>
+
+    <!-- ════════════════════════════════════════
+         SCROLLABLE CONTENT
+         ════════════════════════════════════════ -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvAppMotto">
+        android:layout_height="match_parent"
+        android:layout_marginTop="220dp"
+        android:clipToPadding="false"
+        android:paddingBottom="24dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:orientation="vertical">
 
-            <!-- Card de Resumen Financiero -->
+            <!-- ── Financial Summary Card (overlaps header) ── -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="24dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="6dp"
-                app:cardBackgroundColor="@color/colorCardBackground">
+                app:cardBackgroundColor="@color/colorCardBackground"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -85,117 +112,151 @@
                     android:orientation="vertical"
                     android:padding="20dp">
 
+                    <!-- Card Header Row -->
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp">
+                        android:layout_marginBottom="20dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/inter"
                             android:text="@string/resumen_financiero"
                             android:textColor="@color/colorTextPrimary"
-                            android:textSize="16sp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/btnEditBudget"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
                             android:layout_alignParentEnd="true"
-                            android:contentDescription="Editar presupuesto"
-                            android:src="@drawable/ic_edit" />
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/bg_edit_button"
+                            android:clickable="true"
+                            android:contentDescription="@string/cd_editar_presupuesto"
+                            android:focusable="true"
+                            android:padding="14dp"
+                            android:src="@drawable/ic_edit"
+                            app:tint="@color/colorPrimary" />
                     </RelativeLayout>
 
-                    <!-- Fila de Valores: Presupuesto, Gastado, Disponible -->
+                    <!-- Three Metrics Row -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
                         android:orientation="horizontal"
-                        android:weightSum="3"
-                        android:layout_marginBottom="20dp">
+                        android:weightSum="3">
 
                         <!-- Presupuesto -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/inter"
+                                android:letterSpacing="0.05"
                                 android:text="@string/presupuesto_mensual"
-                                android:textColor="@color/colorTextSecondary"
-                                android:textSize="12sp" />
+                                android:textAllCaps="true"
+                                android:textColor="@color/colorTextMuted"
+                                android:textSize="11sp" />
 
                             <TextView
                                 android:id="@+id/tvBudgetVal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:text="$0.00"
+                                android:layout_marginTop="6dp"
+                                android:fontFamily="@font/inter"
+                                tools:text="$0.00"
                                 android:textColor="@color/colorTextPrimary"
-                                android:textSize="18sp"
+                                android:textSize="19sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
+
+                        <!-- Divider -->
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:background="@color/colorOutlineVariant" />
 
                         <!-- Gastado -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/inter"
+                                android:letterSpacing="0.05"
                                 android:text="@string/total_gastado"
-                                android:textColor="@color/colorTextSecondary"
-                                android:textSize="12sp" />
+                                android:textAllCaps="true"
+                                android:textColor="@color/colorTextMuted"
+                                android:textSize="11sp" />
 
                             <TextView
                                 android:id="@+id/tvSpentVal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:text="$0.00"
+                                android:layout_marginTop="6dp"
+                                android:fontFamily="@font/inter"
+                                tools:text="$0.00"
                                 android:textColor="@color/colorDanger"
-                                android:textSize="18sp"
+                                android:textSize="19sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
+
+                        <!-- Divider -->
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:background="@color/colorOutlineVariant" />
 
                         <!-- Disponible -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/inter"
+                                android:letterSpacing="0.05"
                                 android:text="@string/balance_disponible"
-                                android:textColor="@color/colorTextSecondary"
-                                android:textSize="12sp" />
+                                android:textAllCaps="true"
+                                android:textColor="@color/colorTextMuted"
+                                android:textSize="11sp" />
 
                             <TextView
                                 android:id="@+id/tvRemainingVal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:text="$0.00"
-                                android:textColor="@color/colorSuccess"
-                                android:textSize="18sp"
+                                android:layout_marginTop="6dp"
+                                android:fontFamily="@font/inter"
+                                tools:text="$0.00"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="19sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </LinearLayout>
 
-                    <!-- Barra de progreso -->
+                    <!-- Progress Bar -->
                     <ProgressBar
                         android:id="@+id/budgetProgressBar"
                         style="?android:attr/progressBarStyleHorizontal"
@@ -203,231 +264,366 @@
                         android:layout_height="8dp"
                         android:max="100"
                         android:progress="0"
+                        android:progressBackgroundTint="@color/colorSurfaceContainer"
                         android:progressTint="@color/colorPrimary" />
 
-                    <TextView
-                        android:id="@+id/tvPercentageSpent"
-                        android:layout_width="wrap_content"
+                    <!-- Percentage label -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:layout_marginTop="6dp"
-                        android:text="0% gastado"
-                        android:textColor="@color/colorTextSecondary"
-                        android:textSize="11sp" />
+                        android:layout_marginTop="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:fontFamily="@font/inter"
+                            android:text="@string/progreso_del_mes"
+                            android:textColor="@color/colorTextMuted"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/tvPercentageSpent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:fontFamily="@font/inter"
+                            tools:text="0% usado"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Sección de Herramientas -->
+            <!-- ── Modules Section Title ── -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:text="Módulos del Sistema"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/inter"
+                android:text="@string/modulos_sistema"
                 android:textColor="@color/colorTextPrimary"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:textStyle="bold" />
 
+            <!-- ── 2x2 Module Grid ── -->
             <androidx.gridlayout.widget.GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
                 app:columnCount="2"
-                app:rowCount="2">
+                app:rowCount="2"
+                app:useDefaultMargins="false">
 
-                <!-- Card 1: Compras -->
+                <!-- ─ Card 1: Organizar Compras ─ -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardShopping"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="6dp"
-                    android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="3dp"
+                    android:foreground="?android:attr/selectableItemBackground"
                     app:cardBackgroundColor="@color/colorCardBackground"
-                    app:layout_columnWeight="1">
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp"
+                    app:layout_columnWeight="1"
+                    app:strokeColor="@color/colorOutlineVariant"
+                    app:strokeWidth="1dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="16dp"
-                        android:gravity="center_horizontal">
+                        android:padding="16dp">
 
-                        <ImageView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:src="@drawable/ic_cart"
-                            android:contentDescription="Organizar Compras" />
+                        <!-- Icon Container -->
+                        <FrameLayout
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            android:layout_marginBottom="12dp"
+                            android:background="@drawable/bg_icon_container_green">
+
+                            <ImageView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/cd_compras"
+                                android:src="@drawable/ic_cart"
+                                app:tint="@color/colorPrimary" />
+                        </FrameLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/inter"
                             android:text="@string/title_compras"
                             android:textColor="@color/colorTextPrimary"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:gravity="center" />
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/inter"
                             android:text="@string/desc_compras"
-                            android:textColor="@color/colorTextSecondary"
-                            android:textSize="11sp"
-                            android:gravity="center" />
+                            android:textColor="@color/colorTextMuted"
+                            android:textSize="11sp" />
+
+                        <!-- Arrow Row -->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp">
+
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_alignParentEnd="true"
+                                android:contentDescription="@string/cd_ir"
+                                android:src="@drawable/ic_arrow_right"
+                                app:tint="@color/colorPrimary" />
+                        </RelativeLayout>
+
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <!-- Card 2: Gastos -->
+                <!-- ─ Card 2: Control de Gastos ─ -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardExpenses"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="6dp"
-                    android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="3dp"
+                    android:foreground="?android:attr/selectableItemBackground"
                     app:cardBackgroundColor="@color/colorCardBackground"
-                    app:layout_columnWeight="1">
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp"
+                    app:layout_columnWeight="1"
+                    app:strokeColor="@color/colorOutlineVariant"
+                    app:strokeWidth="1dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="16dp"
-                        android:gravity="center_horizontal">
+                        android:padding="16dp">
 
-                        <ImageView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:src="@drawable/ic_wallet"
-                            android:contentDescription="Control de Gastos" />
+                        <FrameLayout
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            android:layout_marginBottom="12dp"
+                            android:background="@drawable/bg_icon_container_blue">
+
+                            <ImageView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/cd_gastos"
+                                android:src="@drawable/ic_wallet"
+                                app:tint="@color/colorSecondary" />
+                        </FrameLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/inter"
                             android:text="@string/title_gastos"
                             android:textColor="@color/colorTextPrimary"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:gravity="center" />
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/inter"
                             android:text="@string/desc_gastos"
-                            android:textColor="@color/colorTextSecondary"
-                            android:textSize="11sp"
-                            android:gravity="center" />
+                            android:textColor="@color/colorTextMuted"
+                            android:textSize="11sp" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp">
+
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_alignParentEnd="true"
+                                android:contentDescription="@string/cd_ir"
+                                android:src="@drawable/ic_arrow_right"
+                                app:tint="@color/colorSecondary" />
+                        </RelativeLayout>
+
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <!-- Card 3: Reportes -->
+                <!-- ─ Card 3: Análisis de Hábitos ─ -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardReports"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="6dp"
-                    android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="3dp"
+                    android:foreground="?android:attr/selectableItemBackground"
                     app:cardBackgroundColor="@color/colorCardBackground"
-                    app:layout_columnWeight="1">
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp"
+                    app:layout_columnWeight="1"
+                    app:strokeColor="@color/colorOutlineVariant"
+                    app:strokeWidth="1dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="16dp"
-                        android:gravity="center_horizontal">
+                        android:padding="16dp">
 
-                        <ImageView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:src="@drawable/ic_chart"
-                            android:contentDescription="Análisis de Consumo" />
+                        <FrameLayout
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            android:layout_marginBottom="12dp"
+                            android:background="@drawable/bg_icon_container_amber">
+
+                            <ImageView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/cd_analisis"
+                                android:src="@drawable/ic_chart"
+                                app:tint="@color/colorTertiary" />
+                        </FrameLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/inter"
                             android:text="@string/title_analisis"
                             android:textColor="@color/colorTextPrimary"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:gravity="center" />
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/inter"
                             android:text="@string/desc_analisis"
-                            android:textColor="@color/colorTextSecondary"
-                            android:textSize="11sp"
-                            android:gravity="center" />
+                            android:textColor="@color/colorTextMuted"
+                            android:textSize="11sp" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp">
+
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_alignParentEnd="true"
+                                android:contentDescription="@string/cd_ir"
+                                android:src="@drawable/ic_arrow_right"
+                                app:tint="@color/colorTertiary" />
+                        </RelativeLayout>
+
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <!-- Card 4: Consejos -->
+                <!-- ─ Card 4: Ahorro Inteligente ─ -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardTips"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="6dp"
-                    android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="3dp"
+                    android:foreground="?android:attr/selectableItemBackground"
                     app:cardBackgroundColor="@color/colorCardBackground"
-                    app:layout_columnWeight="1">
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp"
+                    app:layout_columnWeight="1"
+                    app:strokeColor="@color/colorOutlineVariant"
+                    app:strokeWidth="1dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="16dp"
-                        android:gravity="center_horizontal">
+                        android:padding="16dp">
 
-                        <ImageView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:src="@drawable/ic_tips"
-                            android:contentDescription="Ahorro Inteligente" />
+                        <FrameLayout
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            android:layout_marginBottom="12dp"
+                            android:background="@drawable/bg_icon_container_pink">
+
+                            <ImageView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/cd_ahorro"
+                                android:src="@drawable/ic_tips"
+                                app:tint="@color/colorAccentPink" />
+                        </FrameLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/inter"
                             android:text="@string/title_ahorro"
                             android:textColor="@color/colorTextPrimary"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:gravity="center" />
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/inter"
                             android:text="@string/desc_ahorro"
-                            android:textColor="@color/colorTextSecondary"
-                            android:textSize="11sp"
-                            android:gravity="center" />
+                            android:textColor="@color/colorTextMuted"
+                            android:textSize="11sp" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp">
+
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_alignParentEnd="true"
+                                android:contentDescription="@string/cd_ir"
+                                android:src="@drawable/ic_arrow_right"
+                                app:tint="@color/colorAccentPink" />
+                        </RelativeLayout>
+
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
             </androidx.gridlayout.widget.GridLayout>
 
+            <!-- Bottom padding spacer -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="24dp" />
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!-- ════════════════════════════════════════
+         SCROLLABLE CONTENT
+         ════════════════════════════════════════ -->
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

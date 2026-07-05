@@ -1,89 +1,162 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="24dp">
 
     <!-- Nombre del producto Autocompletado -->
-    <AutoCompleteTextView
-        android:id="@+id/actvProductName"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxStrokeColor="@color/colorPrimary"
+        app:hintTextColor="@color/colorPrimary"
         android:hint="@string/hint_nombre_producto"
-        android:completionThreshold="1"
-        android:inputType="textCapSentences"
-        android:layout_marginBottom="12dp" />
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
 
+        <AutoCompleteTextView
+            android:id="@+id/actvProductName"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:completionThreshold="1"
+            android:inputType="textCapSentences"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="15sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Cantidad + Precio Row -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="14dp"
         android:weightSum="2">
 
         <!-- Cantidad -->
-        <EditText
-            android:id="@+id/etProductQty"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_cantidad"
+            android:layout_weight="1"
             android:layout_marginEnd="6dp"
-            android:inputType="numberDecimal" />
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxStrokeColor="@color/colorPrimary"
+            app:hintTextColor="@color/colorPrimary"
+            android:hint="@string/hint_cantidad"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProductQty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Precio -->
-        <EditText
-            android:id="@+id/etProductPrice"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_precio"
+            android:layout_weight="1"
             android:layout_marginStart="6dp"
-            android:inputType="numberDecimal" />
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxStrokeColor="@color/colorPrimary"
+            app:hintTextColor="@color/colorPrimary"
+            app:prefixText="$"
+            app:prefixTextColor="@color/colorPrimary"
+            android:hint="@string/hint_precio"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProductPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
-    <!-- Escáner de Código de Barras -->
+    <!-- Código de barras + Escáner Row -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="12dp"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:layout_marginBottom="14dp">
 
-        <EditText
-            android:id="@+id/etBarcode"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Código de barras"
-            android:inputType="number" />
+            android:layout_marginEnd="8dp"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxStrokeColor="@color/colorPrimary"
+            app:hintTextColor="@color/colorPrimary"
+            android:hint="Código de barras (opcional)"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etBarcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Scan button - must keep this ID for ShoppingListDetailActivity.kt -->
         <ImageButton
             android:id="@+id/btnScanBarcode"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginStart="8dp"
-            android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Escanear"
+            android:background="@drawable/bg_icon_container_green"
+            android:contentDescription="@string/auto_str_escanear_c_digo"
+            android:padding="12dp"
             android:scaleType="fitCenter"
-            android:padding="8dp"
-            android:src="@drawable/ic_barcode" />
+            android:src="@drawable/ic_barcode"
+            app:tint="@color/colorPrimary" />
     </LinearLayout>
 
+    <!-- Categoría Label -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Categoría del producto:"
+        android:text="@string/auto_str_categor_a_del_product"
         android:textColor="@color/colorTextSecondary"
         android:textSize="12sp"
-        android:layout_marginBottom="4dp" />
+        android:textStyle="bold"
+        android:layout_marginBottom="6dp" />
 
-    <!-- Categoría -->
-    <Spinner
-        android:id="@+id/spinnerCategory"
+    <!-- Categoría Spinner styled container -->
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="48dp" />
+        android:background="@drawable/bg_spinner_outlined"
+        android:padding="4dp">
+
+        <Spinner
+            android:id="@+id/spinnerCategory"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp" />
+    </FrameLayout>
 
 </LinearLayout>
+
