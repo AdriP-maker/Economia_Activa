@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
+import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -13,9 +14,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
 import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textfield.TextInputEditText
 import pa.ac.utp.economia_activa.data.DatabaseHelper
 import pa.ac.utp.economia_activa.ui.expenses.ExpensesActivity
 import pa.ac.utp.economia_activa.ui.reports.ReportsActivity
@@ -130,16 +134,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showEditBudgetDialog() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Definir Presupuesto Mensual")
+        // Inflar layout moderno para el diálogo de presupuesto
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_edit_budget, null)
+        val etBudgetInput = dialogView.findViewById<TextInputEditText>(R.id.etBudgetInput)
+        val btnCancel = dialogView.findViewById<Button>(R.id.btnCancelBudget)
+        val btnSave = dialogView.findViewById<Button>(R.id.btnSaveBudget)
 
-        val input = EditText(this)
-        input.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
-        input.setText(monthlyBudget.toString())
-        builder.setView(input)
+        etBudgetInput.setText(monthlyBudget.toString())
 
-        builder.setPositiveButton("Guardar") { dialog, _ ->
-            val budgetStr = input.text.toString().trim()
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        btnCancel.setOnClickListener { dialog.dismiss() }
+
+        btnSave.setOnClickListener {
+            val budgetStr = etBudgetInput.text.toString().trim()
             if (budgetStr.isNotEmpty()) {
                 try {
                     val newBudget = budgetStr.toDouble()
@@ -149,21 +160,19 @@ class MainActivity : AppCompatActivity() {
                         prefs.edit().putFloat("monthly_budget", newBudget.toFloat()).apply()
                         updateDashboard()
                         Toast.makeText(this, "Presupuesto actualizado", Toast.LENGTH_SHORT).show()
+                        dialog.dismiss()
                     } else {
                         Toast.makeText(this, "Ingrese un valor mayor a cero", Toast.LENGTH_SHORT).show()
                     }
                 } catch (e: Exception) {
                     Toast.makeText(this, "Formato incorrecto", Toast.LENGTH_SHORT).show()
                 }
+            } else {
+                Toast.makeText(this, "Ingrese el presupuesto", Toast.LENGTH_SHORT).show()
             }
-            dialog.dismiss()
         }
 
-        builder.setNegativeButton("Cancelar") { dialog, _ ->
-            dialog.cancel()
-        }
-
-        builder.show()
+        dialog.show()
     }
 
     private fun showSettingsDialog() {
@@ -173,130 +182,54 @@ class MainActivity : AppCompatActivity() {
         val currentSalary = prefs.getFloat("user_salary", 0.0f).toDouble()
         val isBiometricEnabled = prefs.getBoolean("biometrics_enabled", false)
 
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Configuración de Perfil")
+        // Inflar el nuevo layout moderno del diálogo de perfil
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_profile_settings, null)
 
-        val context = this
-        val layout = android.widget.LinearLayout(context).apply {
-            orientation = android.widget.LinearLayout.VERTICAL
-            setPadding(50, 30, 50, 30)
-        }
+        val etName = dialogView.findViewById<TextInputEditText>(R.id.etProfileName)
+        val etLastname = dialogView.findViewById<TextInputEditText>(R.id.etProfileLastname)
+        val etSalary = dialogView.findViewById<TextInputEditText>(R.id.etProfileSalary)
+        val switchBiometric = dialogView.findViewById<SwitchCompat>(R.id.switchProfileBiometric)
+        val btnDeleteData = dialogView.findViewById<Button>(R.id.btnDeleteAllData)
+        val btnCancel = dialogView.findViewById<Button>(R.id.btnCancelProfile)
+        val btnSave = dialogView.findViewById<Button>(R.id.btnSaveProfile)
 
-        // Campo Nombre
-        val tvNameLabel = TextView(context).apply {
-            text = "Nombre"
-            setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 12f)
-            setTypeface(null, android.graphics.Typeface.BOLD)
-            setTextColor(context.getColor(R.color.colorTextPrimary))
-        }
-        val etName = EditText(context).apply {
-            setText(currentName)
-            inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_WORDS
-            setTextColor(context.getColor(R.color.colorTextPrimary))
-            setHintTextColor(context.getColor(R.color.colorTextSecondary))
-            layoutParams = android.widget.LinearLayout.LayoutParams(
-                android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
-                android.widget.LinearLayout.LayoutParams.WRAP_CONTENT
-            ).apply { setMargins(0, 0, 0, 16) }
-        }
+        // Precargar datos actuales
+        etName.setText(currentName)
+        etLastname.setText(currentLastname)
+        if (currentSalary > 0) etSalary.setText(currentSalary.toString())
+        switchBiometric.isChecked = isBiometricEnabled
 
-        // Campo Apellido
-        val tvLastnameLabel = TextView(context).apply {
-            text = "Apellido"
-            setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 12f)
-            setTypeface(null, android.graphics.Typeface.BOLD)
-            setTextColor(context.getColor(R.color.colorTextPrimary))
-        }
-        val etLastname = EditText(context).apply {
-            setText(currentLastname)
-            inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_WORDS
-            setTextColor(context.getColor(R.color.colorTextPrimary))
-            setHintTextColor(context.getColor(R.color.colorTextSecondary))
-            layoutParams = android.widget.LinearLayout.LayoutParams(
-                android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
-                android.widget.LinearLayout.LayoutParams.WRAP_CONTENT
-            ).apply { setMargins(0, 0, 0, 16) }
-        }
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        // Campo Sueldo
-        val tvSalaryLabel = TextView(context).apply {
-            text = "Sueldo Mensual ($)"
-            setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 12f)
-            setTypeface(null, android.graphics.Typeface.BOLD)
-            setTextColor(context.getColor(R.color.colorTextPrimary))
-        }
-        val etSalary = EditText(context).apply {
-            setText(currentSalary.toString())
-            inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
-            setTextColor(context.getColor(R.color.colorTextPrimary))
-            setHintTextColor(context.getColor(R.color.colorTextSecondary))
-            layoutParams = android.widget.LinearLayout.LayoutParams(
-                android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
-                android.widget.LinearLayout.LayoutParams.WRAP_CONTENT
-            ).apply { setMargins(0, 0, 0, 20) }
-        }
+        // Botón Cancelar
+        btnCancel.setOnClickListener { dialog.dismiss() }
 
-        // Switch Biométrico
-        val switchBiometric = androidx.appcompat.widget.SwitchCompat(context).apply {
-            text = "Seguridad Biométrica"
-            isChecked = isBiometricEnabled
-            setTextColor(context.getColor(R.color.colorTextPrimary))
-            layoutParams = android.widget.LinearLayout.LayoutParams(
-                android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
-                android.widget.LinearLayout.LayoutParams.WRAP_CONTENT
-            ).apply { setMargins(0, 0, 0, 24) }
-        }
-
-        // Botón Borrar Datos (Rojo)
-        val btnClearData = Button(context).apply {
-            text = "Borrar todos los datos"
-            backgroundTintList = android.content.res.ColorStateList.valueOf(context.getColor(R.color.colorDanger))
-            setTextColor(context.getColor(R.color.white))
-            setTypeface(null, android.graphics.Typeface.BOLD)
-            layoutParams = android.widget.LinearLayout.LayoutParams(
-                android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
-                android.widget.LinearLayout.LayoutParams.WRAP_CONTENT
-            ).apply { setMargins(0, 0, 0, 8) }
-
-            setOnClickListener {
-                AlertDialog.Builder(context)
-                    .setTitle("⚠️ ¿Eliminar todos los datos?")
-                    .setMessage("Esta acción eliminará de forma permanente todo tu historial de gastos, facturas, productos guardados y configuraciones de perfil. La aplicación se reiniciará por completo.")
-                    .setPositiveButton("Sí, Eliminar todo") { confirmDialog, _ ->
-                        // Limpiar SQLite
-                        dbHelper.clearAllData()
-                        // Limpiar SharedPreferences
-                        prefs.edit().clear().apply()
-
-                        Toast.makeText(context, "Todos los datos eliminados", Toast.LENGTH_SHORT).show()
-                        confirmDialog.dismiss()
-
-                        // Reiniciar aplicación
-                        val restartIntent = Intent(context, Home::class.java).apply {
-                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                        }
-                        startActivity(restartIntent)
-                        finish()
+        // Botón Borrar todos los datos
+        btnDeleteData.setOnClickListener {
+            MaterialAlertDialogBuilder(this)
+                .setTitle("¿Eliminar todos los datos?")
+                .setMessage("Esta acción eliminará permanentemente todo tu historial, listas, facturas y configuraciones. No se puede deshacer.")
+                .setPositiveButton("Sí, eliminar todo") { confirmDialog, _ ->
+                    dbHelper.clearAllData()
+                    prefs.edit().clear().apply()
+                    Toast.makeText(this, "Todos los datos eliminados", Toast.LENGTH_SHORT).show()
+                    confirmDialog.dismiss()
+                    dialog.dismiss()
+                    val restartIntent = Intent(this, Home::class.java).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     }
-                    .setNegativeButton("Cancelar") { confirmDialog, _ ->
-                        confirmDialog.dismiss()
-                    }
-                    .show()
-            }
+                    startActivity(restartIntent)
+                    finish()
+                }
+                .setNegativeButton("Cancelar") { confirmDialog, _ -> confirmDialog.dismiss() }
+                .show()
         }
 
-        layout.addView(tvNameLabel)
-        layout.addView(etName)
-        layout.addView(tvLastnameLabel)
-        layout.addView(etLastname)
-        layout.addView(tvSalaryLabel)
-        layout.addView(etSalary)
-        layout.addView(switchBiometric)
-        layout.addView(btnClearData)
-
-        builder.setView(layout)
-
-        builder.setPositiveButton("Guardar") { dialog, _ ->
+        // Botón Guardar
+        btnSave.setOnClickListener {
             val name = etName.text.toString().trim()
             val lastname = etLastname.text.toString().trim()
             val salaryStr = etSalary.text.toString().trim()
@@ -313,24 +246,20 @@ class MainActivity : AppCompatActivity() {
                             putBoolean("biometrics_enabled", biometricVal)
                             apply()
                         }
-                        Toast.makeText(context, "Datos actualizados", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Datos actualizados", Toast.LENGTH_SHORT).show()
                         updateDashboard()
                         dialog.dismiss()
                     } else {
-                        Toast.makeText(context, "El sueldo debe ser mayor a cero", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "El sueldo debe ser mayor a cero", Toast.LENGTH_SHORT).show()
                     }
                 } catch (e: Exception) {
-                    Toast.makeText(context, "Monto inválido", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Monto inválido", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(context, "Por favor complete todos los campos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Por favor complete todos los campos", Toast.LENGTH_SHORT).show()
             }
         }
 
-        builder.setNegativeButton("Cancelar") { dialog, _ ->
-            dialog.dismiss()
-        }
-
-        builder.show()
+        dialog.show()
     }
 }

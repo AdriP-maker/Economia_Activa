@@ -8,15 +8,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
+import android.widget.Button
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.google.android.material.textfield.TextInputEditText
 import pa.ac.utp.economia_activa.R
 import pa.ac.utp.economia_activa.data.DatabaseHelper
 import pa.ac.utp.economia_activa.data.ShoppingList
@@ -27,7 +27,6 @@ class ShoppingListsActivity : AppCompatActivity() {
     private lateinit var dbHelper: DatabaseHelper
     private lateinit var adapter: ShoppingListAdapter
     private lateinit var rvShoppingLists: RecyclerView
-    private lateinit var tvEmptyState: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +39,9 @@ class ShoppingListsActivity : AppCompatActivity() {
             finish()
         }
 
-        tvEmptyState = findViewById(R.id.tvEmptyState)
         rvShoppingLists = findViewById(R.id.rvShoppingLists)
         rvShoppingLists.layoutManager = LinearLayoutManager(this)
+
 
         adapter = ShoppingListAdapter(
             context = this,
@@ -59,8 +58,8 @@ class ShoppingListsActivity : AppCompatActivity() {
         )
         rvShoppingLists.adapter = adapter
 
-        // FAB Agregar Lista
-        findViewById<FloatingActionButton>(R.id.fabAddList).setOnClickListener {
+        // FAB Agregar Lista (ExtendedFloatingActionButton)
+        findViewById<ExtendedFloatingActionButton>(R.id.fabAddList).setOnClickListener {
             showAddListDialog()
         }
 
@@ -76,47 +75,32 @@ class ShoppingListsActivity : AppCompatActivity() {
         val lists = dbHelper.getAllShoppingLists()
         adapter.updateData(lists)
 
+        val emptyLayout = findViewById<View>(R.id.layoutEmptyState)
         if (lists.isEmpty()) {
-            tvEmptyState.visibility = View.VISIBLE
+            emptyLayout?.visibility = View.VISIBLE
             rvShoppingLists.visibility = View.GONE
         } else {
-            tvEmptyState.visibility = View.GONE
+            emptyLayout?.visibility = View.GONE
             rvShoppingLists.visibility = View.VISIBLE
         }
     }
 
     private fun showAddListDialog() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle(getString(R.string.crear_nueva_lista))
+        // Inflar el layout moderno del diálogo de nueva lista
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_new_shopping_list, null)
+        val etName = dialogView.findViewById<TextInputEditText>(R.id.etNewListName)
+        val etBudget = dialogView.findViewById<TextInputEditText>(R.id.etNewListBudget)
+        val btnCancel = dialogView.findViewById<Button>(R.id.btnCancelNewList)
+        val btnCreate = dialogView.findViewById<Button>(R.id.btnConfirmNewList)
 
-        // Contenedor de inputs
-        val context = this
-        val layout = LinearLayout(context).apply {
-            orientation = LinearLayout.VERTICAL
-            setPadding(40, 20, 40, 20)
-        }
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        val etName = EditText(context).apply {
-            hint = getString(R.string.hint_nombre_lista)
-            inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
-            layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            ).apply {
-                setMargins(0, 0, 0, 20)
-            }
-        }
+        btnCancel.setOnClickListener { dialog.dismiss() }
 
-        val etBudget = EditText(context).apply {
-            hint = getString(R.string.hint_presupuesto)
-            inputType = android.text.InputType.TYPE_CLASS_NUMBER or android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL
-        }
-
-        layout.addView(etName)
-        layout.addView(etBudget)
-        builder.setView(layout)
-
-        builder.setPositiveButton(getString(R.string.btn_crear)) { dialog, _ ->
+        btnCreate.setOnClickListener {
             val name = etName.text.toString().trim()
             val budgetStr = etBudget.text.toString().trim()
 
@@ -127,28 +111,32 @@ class ShoppingListsActivity : AppCompatActivity() {
                         val newId = dbHelper.insertShoppingList(name, budget)
                         dialog.dismiss()
                         loadLists()
-
                         // Abrir detalle directamente
                         val intent = Intent(this, ShoppingListDetailActivity::class.java).apply {
                             putExtra("LIST_ID", newId)
                         }
                         startActivity(intent)
                     } else {
-                        Toast.makeText(context, "El presupuesto debe ser mayor a 0", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "El presupuesto debe ser mayor a 0", Toast.LENGTH_SHORT).show()
                     }
                 } catch (e: Exception) {
-                    Toast.makeText(context, "Monto inválido", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Monto inválido", Toast.LENGTH_SHORT).show()
                 }
+            } else if (name.isNotEmpty()) {
+                // Permitir crear lista sin presupuesto (presupuesto opcional)
+                val newId = dbHelper.insertShoppingList(name, 0.0)
+                dialog.dismiss()
+                loadLists()
+                val intent = Intent(this, ShoppingListDetailActivity::class.java).apply {
+                    putExtra("LIST_ID", newId)
+                }
+                startActivity(intent)
             } else {
-                Toast.makeText(context, "Complete todos los campos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Ingresa un nombre para la lista", Toast.LENGTH_SHORT).show()
             }
         }
 
-        builder.setNegativeButton(getString(R.string.btn_cancelar)) { dialog, _ ->
-            dialog.cancel()
-        }
-
-        builder.show()
+        dialog.show()
     }
 
     private fun showDeleteConfirmDialog(list: ShoppingList) {
@@ -184,7 +172,7 @@ class ShoppingListAdapter(
         val tvListBudget: TextView = view.findViewById(R.id.tvListBudget)
         val tvListSpent: TextView = view.findViewById(R.id.tvListSpent)
         val tvListStatus: TextView = view.findViewById(R.id.tvListStatus)
-        val btnDeleteList: ImageView = view.findViewById(R.id.btnDeleteList)
+        val btnDeleteList: View = view.findViewById(R.id.btnDeleteList)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

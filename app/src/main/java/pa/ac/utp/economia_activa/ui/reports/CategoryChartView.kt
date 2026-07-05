@@ -27,14 +27,14 @@ class CategoryChartView @JvmOverloads constructor(
     }
 
     private val paintTextAmount = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = Color.parseColor("#212121")
+        color = context.getColor(pa.ac.utp.economia_activa.R.color.colorTextPrimary)
         textAlign = Paint.Align.CENTER
         textSize = 48f
         isFakeBoldText = true
     }
 
     private val paintTextLabel = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = Color.parseColor("#757575")
+        color = context.getColor(pa.ac.utp.economia_activa.R.color.colorTextSecondary)
         textAlign = Paint.Align.CENTER
         textSize = 28f
     }
@@ -83,7 +83,7 @@ class CategoryChartView @JvmOverloads constructor(
 
         if (dataMap.isEmpty() || totalAmount == 0.0) {
             // Dibujar un anillo gris por defecto si no hay datos
-            paintArc.color = Color.parseColor("#E0E0E0")
+            paintArc.color = context.getColor(pa.ac.utp.economia_activa.R.color.colorOutlineVariant)
             canvas.drawArc(rectF, 0f, 360f, false, paintArc)
             
             // Dibujar texto en el centro

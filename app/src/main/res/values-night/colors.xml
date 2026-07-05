@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ════════════════════════════════
+         DARK MODE — Color Overrides
+         All surface/card colors adapt to
+         Material 3 dark surface tokens
+         ════════════════════════════════ -->
+
+    <!-- Surfaces (dark) -->
+    <color name="colorBackground">#0B1512</color>
+    <color name="colorSurface">#131E19</color>
+    <color name="colorSurfaceVariant">#3E4A40</color>
+    <color name="colorSurfaceContainer">#1E2E28</color>
+    <color name="colorSurfaceContainerLow">#162219</color>
+    <color name="colorSurfaceContainerHigh">#263830</color>
+
+    <!-- Cards (dark) — dialog background automatically uses this -->
+    <color name="colorCardBackground">#253A2F</color>
+
+    <!-- Text (dark) -->
+    <color name="colorTextPrimary">#E7F4EB</color>
+    <color name="colorTextSecondary">#BECABD</color>
+    <color name="colorTextMuted">#7A8F7E</color>
+    <color name="colorOnBackground">#E7F4EB</color>
+    <color name="colorOnSurface">#E7F4EB</color>
+    <color name="colorOnSurfaceVariant">#BECABD</color>
+    <color name="colorOutline">#8A9E8D</color>
+    <color name="colorOutlineVariant">#49574B</color>
+
+    <!-- Primary (dark — lighter emerald for contrast) -->
+    <color name="colorPrimary">#4DB876</color>
+    <color name="colorPrimaryDark">#1B8A4C</color>
+    <color name="colorPrimaryDarker">#0B3D20</color>
+    <color name="colorOnPrimary">#00210D</color>
+    <color name="colorPrimaryContainer">#005229</color>
+    <color name="colorOnPrimaryContainer">#91F8AE</color>
+    <color name="colorPrimaryLight">#A7F3C9</color>
+
+    <!-- Secondary (dark — lighter sky blue) -->
+    <color name="colorSecondary">#38BDF8</color>
+    <color name="colorSecondaryContainer">#0369A1</color>
+
+    <!-- Tertiary (dark — lighter amber) -->
+    <color name="colorTertiary">#FCD34D</color>
+    <color name="colorTertiaryContainer">#78350F</color>
+
+    <!-- Semantic (dark) -->
+    <color name="colorDanger">#F87171</color>
+    <color name="colorDangerContainer">#3D1414</color>
+    <color name="colorSuccess">#75DB94</color>
+    <color name="colorSuccessLight">#1B3D25</color>
+    <color name="colorWarning">#FCD34D</color>
+    <color name="colorInfo">#38BDF8</color>
+
+    <!-- Mint accents (dark) -->
+    <color name="colorMint">#A7F3C9</color>
+    <color name="colorMintDark">#75DB94</color>
+    <color name="colorAccentPink">#F472B6</color>
+    <color name="colorAccentPinkContainer">#3D1430</color>
+
+    <!-- Gradient stops dark -->
+    <color name="gradientStart">#1B8A4C</color>
+    <color name="gradientEnd">#0D6E3A</color>
+</resources>

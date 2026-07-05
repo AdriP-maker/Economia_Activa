@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -38,7 +39,7 @@ class ExpensesActivity : AppCompatActivity() {
     // Formulario Diario
     private lateinit var etDailyConcept: EditText
     private lateinit var etDailyAmount: EditText
-    private lateinit var spinnerDailyCategory: Spinner
+    private lateinit var spinnerDailyCategory: AutoCompleteTextView
     private lateinit var btnSaveDaily: Button
     private lateinit var rvDaily: RecyclerView
     private lateinit var tvDailyEmpty: TextView
@@ -48,7 +49,7 @@ class ExpensesActivity : AppCompatActivity() {
     private lateinit var etFixedConcept: EditText
     private lateinit var etFixedAmount: EditText
     private lateinit var etFixedDay: EditText
-    private lateinit var spinnerFixedCategory: Spinner
+    private lateinit var spinnerFixedCategory: AutoCompleteTextView
     private lateinit var btnSaveFixed: Button
     private lateinit var rvFixed: RecyclerView
     private lateinit var tvFixedEmpty: TextView
@@ -87,8 +88,8 @@ class ExpensesActivity : AppCompatActivity() {
         tvDailyEmpty = findViewById(R.id.tvDailyEmpty)
 
         val categories = resources.getStringArray(R.array.categories_array)
-        val dailySpinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, categories)
-        spinnerDailyCategory.adapter = dailySpinnerAdapter
+        val dailySpinnerAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, categories)
+        spinnerDailyCategory.setAdapter(dailySpinnerAdapter)
 
         rvDaily.layoutManager = LinearLayoutManager(this)
         dailyAdapter = ExpenseLogAdapter(
@@ -113,8 +114,8 @@ class ExpensesActivity : AppCompatActivity() {
         rvFixed = findViewById(R.id.rvPeriodicExpenses)
         tvFixedEmpty = findViewById(R.id.tvFixedEmpty)
 
-        val fixedSpinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, categories)
-        spinnerFixedCategory.adapter = fixedSpinnerAdapter
+        val fixedSpinnerAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, categories)
+        spinnerFixedCategory.setAdapter(fixedSpinnerAdapter)
 
         rvFixed.layoutManager = LinearLayoutManager(this)
         fixedAdapter = PeriodicExpenseAdapter(
@@ -137,17 +138,23 @@ class ExpensesActivity : AppCompatActivity() {
 
     private fun switchTab(isDailyActive: Boolean) {
         if (isDailyActive) {
-            btnTabDaily.setTextColor(getColor(R.color.colorPrimary))
+            btnTabDaily.setBackgroundResource(R.drawable.bg_tab_active)
+            btnTabDaily.setTextColor(getColor(R.color.white))
             btnTabDaily.setTypeface(null, android.graphics.Typeface.BOLD)
-            btnTabFixed.setTextColor(getColor(R.color.colorTextSecondary))
+
+            btnTabFixed.setBackgroundResource(R.drawable.bg_tab_inactive)
+            btnTabFixed.setTextColor(getColor(R.color.colorTextMuted))
             btnTabFixed.setTypeface(null, android.graphics.Typeface.NORMAL)
 
             layoutDailyExpenses.visibility = View.VISIBLE
             layoutFixedExpenses.visibility = View.GONE
         } else {
-            btnTabDaily.setTextColor(getColor(R.color.colorTextSecondary))
+            btnTabDaily.setBackgroundResource(R.drawable.bg_tab_inactive)
+            btnTabDaily.setTextColor(getColor(R.color.colorTextMuted))
             btnTabDaily.setTypeface(null, android.graphics.Typeface.NORMAL)
-            btnTabFixed.setTextColor(getColor(R.color.colorSecondary))
+
+            btnTabFixed.setBackgroundResource(R.drawable.bg_tab_active)
+            btnTabFixed.setTextColor(getColor(R.color.white))
             btnTabFixed.setTypeface(null, android.graphics.Typeface.BOLD)
 
             layoutDailyExpenses.visibility = View.GONE
@@ -173,7 +180,7 @@ class ExpensesActivity : AppCompatActivity() {
     private fun saveDailyExpense() {
         val concept = etDailyConcept.text.toString().trim()
         val amountStr = etDailyAmount.text.toString().trim()
-        val category = spinnerDailyCategory.selectedItem.toString()
+        val category = spinnerDailyCategory.text.toString()
 
         if (concept.isNotEmpty() && amountStr.isNotEmpty()) {
             try {
@@ -305,7 +312,7 @@ class ExpensesActivity : AppCompatActivity() {
         val concept = etFixedConcept.text.toString().trim()
         val amountStr = etFixedAmount.text.toString().trim()
         val dayStr = etFixedDay.text.toString().trim()
-        val category = spinnerFixedCategory.selectedItem.toString()
+        val category = spinnerFixedCategory.text.toString()
 
         if (concept.isNotEmpty() && amountStr.isNotEmpty() && dayStr.isNotEmpty()) {
             try {

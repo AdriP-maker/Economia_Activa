@@ -1,7 +1,29 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Economia_Activa" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+<resources>
+    <!-- Dark Mode Theme -->
+    <style name="Base.Theme.Economia_Activa" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">#75DB94</item>
+        <item name="colorOnPrimary">#00210D</item>
+        <item name="colorPrimaryContainer">#005229</item>
+        <item name="colorOnPrimaryContainer">#91F8AE</item>
+
+        <item name="colorSecondary">#38BDF8</item>
+        <item name="colorSecondaryContainer">#0369A1</item>
+
+        <item name="colorTertiary">#FCD34D</item>
+        <item name="colorTertiaryContainer">#78350F</item>
+
+        <item name="android:colorBackground">#0B1512</item>
+        <item name="colorSurface">#131E19</item>
+        <item name="colorSurfaceVariant">#3E4A40</item>
+        <item name="colorOnSurface">#E7F4EB</item>
+        <item name="colorOnSurfaceVariant">#BECABD</item>
+
+        <item name="colorError">#F87171</item>
+        <item name="android:windowBackground">#0B1512</item>
+        <item name="android:statusBarColor">#0B1512</item>
+        <item name="android:navigationBarColor">#0B1512</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
+
+    <style name="Theme.Economia_Activa" parent="Base.Theme.Economia_Activa" />
 </resources>

@@ -1,4 +1,4 @@
-<resources>
+﻿<resources>
     <string name="app_name">Economía Activa</string>
     
     <!-- Secciones del Dashboard -->
@@ -53,4 +53,124 @@
     <string name="cat_salud">Salud</string>
     <string name="cat_ocio">Entretenimiento / Ocio</string>
     <string name="cat_otros">Otros Gastos</string>
+    
+    <!-- Configuración de Perfil -->
+    <string name="profile_settings_title">Configuración de Perfil</string>
+    <string name="profile_name">Nombre</string>
+    <string name="profile_lastname">Apellido</string>
+    <string name="profile_salary">Sueldo Mensual ($)</string>
+    <string name="profile_biometric">Seguridad Biométrica</string>
+    <string name="profile_biometric_desc">Solicitar huella al abrir la app</string>
+    <string name="profile_delete_data">Borrar todos los datos</string>
+    <string name="profile_icon_desc">Perfil</string>
+    <string name="biometric_icon_desc">Biométrico</string>
+    <string name="action_save">Guardar</string>
+
+    <!-- UI Elements Dashboard -->
+    <string name="app_motto">Compras Inteligentes y Ahorro Familiar</string>
+    <string name="progreso_del_mes">Progreso del mes</string>
+    <string name="modulos_sistema">Módulos del Sistema</string>
+    <string name="cd_configuracion">Configuración</string>
+    <string name="cd_editar_presupuesto">Editar presupuesto</string>
+    <string name="cd_compras">Compras</string>
+    <string name="cd_gastos">Gastos</string>
+    <string name="cd_analisis">Análisis</string>
+    <string name="cd_ahorro">Ahorro</string>
+    <string name="cd_ir">Ir</string>
+
+    <!-- Auto-extracted strings -->
+    <string name="auto_str_sugerencias_y_alertas">Sugerencias y Alertas</string>
+    <string name="auto_str_seguridad_biom_trica">Seguridad Biométrica</string>
+    <string name="auto_str">💸</string>
+    <string name="auto_str_lista">Lista</string>
+    <string name="auto_str_bienvenido_a_econom_a">Bienvenido a Economía Activa</string>
+    <string name="auto_str_alinea_el_c_digo_de_b">Alinea el código de barras dentro del recuadro</string>
+    <string name="auto_str_logo_de_la_app">Logo de la app</string>
+    <string name="auto_str_prop_sito_de_la_aplic">Propósito de la Aplicación</string>
+    <string name="auto_str_listas_de_compras">Listas de Compras</string>
+    <string name="auto_str_configura_tu_perfil_i">Configura tu perfil inicial de ahorro</string>
+    <string name="auto_str_eliminar_producto">Eliminar producto</string>
+    <string name="auto_str_nombre_del_producto">Nombre del Producto</string>
+    <string name="auto_str_solicitar_huella_o_ro">Solicitar huella o rostro al abrir la app</string>
+    <string name="auto_str_huella_dactilar">Huella dactilar</string>
+    <string name="auto_str_registrar_servicio">Registrar Servicio</string>
+    <string name="auto_str__0_00">-$0.00</string>
+    <string name="auto_str_concepto_del_servicio">Concepto del Servicio</string>
+    <string name="auto_str_escanear_c_digo">Escanear código</string>
+    <string name="auto_str_nombre">Nombre</string>
+    <string name="auto_str_rechazar">Rechazar</string>
+    <string name="auto_str_sueldo_mensual">Sueldo Mensual ($)</string>
+    <string name="auto_str_control_de_gastos">Control de Gastos</string>
+    <string name="auto_str_compras_semanales">Compras Semanales</string>
+    <string name="auto_str_t_rminos_y_condicione">Términos y Condiciones</string>
+    <string name="auto_str_categor_a">Categoría</string>
+    <string name="auto_str_categor_a_del_product">Categoría del producto</string>
+    <string name="auto_str_gastos_diarios">Gastos Diarios</string>
+    <string name="auto_str_crear_lista">Crear Lista</string>
+    <string name="auto_str_fecha_categor_a">Fecha • Categoría</string>
+    <string name="auto_str_historial_reciente">Historial Reciente</string>
+    <string name="auto_str_guardar">Guardar</string>
+    <string name="auto_str_usted_es_el_nico_resp">Usted es el único responsable de la seguridad de su dispositivo y de la veracidad de los datos que ingresa. El uso de la función biométrica es opcional y depende del hardware y la configuración de seguridad de su propio sistema operativo.</string>
+    <string name="auto_str_d_a_de_pago_15_catego">Día de Pago: 15 • Categoría</string>
+    <string name="auto_str_desglose_por_categor">Desglose por Categoría</string>
+    <string name="auto_str_apellido">Apellido</string>
+    <string name="auto_str_regresar">Regresar</string>
+    <string name="auto_str_agrega_tu_primer_gast">Agrega tu primer gasto usando el formulario</string>
+    <string name="auto_str_acceso_seguro">Acceso Seguro</string>
+    <string name="auto_str_guardar_y_continuar">Guardar y Continuar</string>
+    <string name="auto_str_econom_a_activa_v2_0">Economía Activa v2.0</string>
+    <string name="auto_str_registrar_servicio_re">Registrar Servicio Recurrente</string>
+    <string name="auto_str_activa">Activa</string>
+    <string name="auto_str_editar_servicio">Editar servicio</string>
+    <string name="auto_str_bienvenido_a_econom_a_1">Bienvenido a Economía Activa. Al utilizar esta aplicación móvil, usted acepta de forma incondicional cumplir con los siguientes términos y condiciones de uso:</string>
+    <string name="auto_str_no_hay_servicios_fijo">No hay servicios fijos registrados.</string>
+    <string name="auto_str_desbloquear">Desbloquear</string>
+    <string name="auto_str_1">🛒</string>
+    <string name="auto_str_no_hay_gastos_registr">No hay gastos registrados aún</string>
+    <string name="auto_str_nueva_lista">Nueva Lista</string>
+    <string name="auto_str_define_cu_nto_puedes">Define cuánto puedes gastar este mes</string>
+    <string name="auto_str_categor_a_cantidad_x">Categoría • Cantidad x Precio</string>
+    <string name="auto_str_econom_a_activa_es_un">Economía Activa es una herramienta de uso personal diseñada para ayudar en el registro de productos de mercado, control de gastos diarios y sugerencias de ahorro familiar. No representa asesoramiento financiero profesional ni vinculante.</string>
+    <string name="auto_str_an_lisis_de_consumo">Análisis de Consumo</string>
+    <string name="auto_str_almacenamiento_local">Almacenamiento Local de Datos</string>
+    <string name="auto_str_presupuesto_mensual">Presupuesto Mensual</string>
+    <string name="auto_str_t_tulo_del_consejo">Título del Consejo</string>
+    <string name="auto_str_total_acumulado">Total Acumulado</string>
+    <string name="auto_str_servicio">Servicio</string>
+    <string name="auto_str_ahorro_inteligente">Ahorro Inteligente</string>
+    <string name="auto_str_eliminar_lista">Eliminar lista</string>
+    <string name="auto_str_cancelar">Cancelar</string>
+    <string name="auto_str_todos_los_datos_inclu">Todos los datos, incluyendo presupuestos, sueldos, nombres de usuario, historial de gastos y códigos de barras escaneados, se almacenan localmente en la base de datos interna de su dispositivo móvil. La aplicación no transmite ni recopila sus datos en servidores externos de terceros.</string>
+    <string name="auto_str_aviso_legal_y_de_priv">Aviso Legal y de Privacidad</string>
+    <string name="auto_str_toca_el_bot_n_para_cr">Toca el botón + para crear tu primera lista de compras</string>
+    <string name="auto_str_los_desarrolladores_d">Los desarrolladores de Economía Activa se reservan el derecho de actualizar la aplicación, alterar las funcionalidades o modificar los términos legales en cualquier momento para cumplir con regulaciones locales de privacidad y optimización del software.</string>
+    <string name="auto_str_presupuesto">Presupuesto</string>
+    <string name="auto_str_servicios_fijos">Servicios Fijos</string>
+    <string name="auto_str_servicios_activos">Servicios Activos</string>
+    <string name="auto_str_biom_trico">Biométrico</string>
+    <string name="auto_str_editar_producto">Editar producto</string>
+    <string name="auto_str_presupuesto_l_mite">Presupuesto Límite</string>
+    <string name="auto_str_descripci_n_detallada">Descripción detallada de la sugerencia o alerta generada.</string>
+    <string name="auto_str_total_estimado">Total estimado</string>
+    <string name="auto_str_registrar_nuevo_gasto">Registrar Nuevo Gasto</string>
+    <string name="auto_str_analizamos_tus_listas">Analizamos tus listas de compras y hábitos de gasto en tiempo real para sugerirte cómo optimizar tu presupuesto familiar.</string>
+    <string name="auto_str_responsabilidad_del_u">Responsabilidad del Usuario</string>
+    <string name="auto_str_no_hay_productos_en_e">No hay productos en esta lista. ¡Toca + para agregar!</string>
+    <string name="auto_str_distribuci_n_de_gasto">Distribución de Gastos Mensuales</string>
+    <string name="auto_str_escuchar_sugerencia">Escuchar sugerencia</string>
+    <string name="auto_str_hola_por_favor_autent">Hola, por favor autentícate para ingresar</string>
+    <string name="auto_str_presupuesto_asignado">Presupuesto asignado</string>
+    <string name="auto_str_agregar_gasto">Agregar Gasto</string>
+    <string name="auto_str_tu_asistente_de_ahorr">Tu Asistente de Ahorro</string>
+    <string name="auto_str_concepto_del_gasto">Concepto del Gasto</string>
+    <string name="auto_str_editar_gasto">Editar gasto</string>
+    <string name="auto_str_modificaciones">Modificaciones</string>
+    <string name="auto_str_2026_07_03">2026-07-03</string>
+    <string name="auto_str_detalle_de_la_lista">Detalle de la Lista</string>
+    <string name="auto_str_he_le_do_y_acepto_los">He leído y acepto los Términos y Condiciones</string>
+    <string name="auto_str_seguridad">Seguridad</string>
+    <string name="auto_str_aceptar">Aceptar</string>
+    <string name="auto_str_nueva_lista_de_compra">Nueva Lista de Compras</string>
+    <string name="auto_str_marcar_comprado">Marcar comprado</string>
+    <string name="auto_str_icono_de_sugerencia">Icono de sugerencia</string>
 </resources>

@@ -1,17 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Base Colors -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="colorPrimary">#2E7D32</color>
-    <color name="colorPrimaryDark">#1B5E20</color>
-    <color name="colorSecondary">#1565C0</color>
-    <color name="colorAccent">#FBC02D</color>
-    <color name="colorBackground">#F8F9FA</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- ── PRIMARY: Emerald Green ── -->
+    <color name="colorPrimary">#1B8A4C</color>
+    <color name="colorPrimaryDark">#0D6E3A</color>
+    <color name="colorPrimaryDarker">#0B3D20</color>
+    <color name="colorPrimaryLight">#138648</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorPrimaryContainer">#D1FAE5</color>
+    <color name="colorOnPrimaryContainer">#00210D</color>
+
+    <!-- ── SECONDARY: Sky Blue ── -->
+    <color name="colorSecondary">#0EA5E9</color>
+    <color name="colorSecondaryDark">#0284C7</color>
+    <color name="colorSecondaryContainer">#DBEAFE</color>
+    <color name="colorOnSecondaryContainer">#1E40AF</color>
+
+    <!-- ── TERTIARY: Amber ── -->
+    <color name="colorTertiary">#F59E0B</color>
+    <color name="colorTertiaryContainer">#FEF3C7</color>
+    <color name="colorOnTertiaryContainer">#92400E</color>
+
+    <!-- ── SURFACES ── -->
+    <color name="colorBackground">#F0FDF4</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorSurfaceVariant">#D9E6DD</color>
+    <color name="colorSurfaceContainer">#E4F1E8</color>
+    <color name="colorSurfaceContainerLow">#EAF7EE</color>
+    <color name="colorSurfaceContainerHigh">#DEEBE3</color>
     <color name="colorCardBackground">#FFFFFF</color>
-    <color name="colorTextPrimary">#212121</color>
-    <color name="colorTextSecondary">#757575</color>
-    <color name="colorDanger">#C62828</color>
-    <color name="colorWarning">#EF6C00</color>
-    <color name="colorSuccess">#2E7D32</color>
-    <color name="colorAccentLight">#FFF9C4</color>
+
+    <!-- ── TEXT ── -->
+    <color name="colorOnBackground">#131E19</color>
+    <color name="colorOnSurface">#131E19</color>
+    <color name="colorOnSurfaceVariant">#3E4A40</color>
+    <color name="colorTextPrimary">#131E19</color>
+    <color name="colorTextSecondary">#3E4A40</color>
+    <color name="colorTextMuted">#6E7A6F</color>
+    <color name="colorOutline">#6E7A6F</color>
+    <color name="colorOutlineVariant">#BECABD</color>
+
+    <!-- ── SEMANTIC ── -->
+    <color name="colorSuccess">#1B8A4C</color>
+    <color name="colorSuccessLight">#D1FAE5</color>
+    <color name="colorDanger">#EF4444</color>
+    <color name="colorDangerDark">#DC2626</color>
+    <color name="colorDangerContainer">#FEE2E2</color>
+    <color name="colorWarning">#F59E0B</color>
+    <color name="colorWarningContainer">#FEF3C7</color>
+    <color name="colorInfo">#0EA5E9</color>
+    <color name="colorInfoContainer">#DBEAFE</color>
+
+    <!-- ── SPECIAL ACCENTS ── -->
+    <color name="colorAccent">#F59E0B</color>
+    <color name="colorAccentPink">#EC4899</color>
+    <color name="colorAccentPinkContainer">#FCE7F3</color>
+    <color name="colorMint">#A7F3C9</color>
+    <color name="colorMintDark">#6EE7B7</color>
+
+    <!-- ── GRADIENT STOPS (for programmatic use) ── -->
+    <color name="gradientStart">#1B8A4C</color>
+    <color name="gradientEnd">#0D6E3A</color>
+    <color name="gradientDarkStart">#0B3D20</color>
+    <color name="gradientDarkEnd">#0A2E17</color>
+
+    <!-- ── NIGHT MODE (overridden in values-night) ── -->
+    <color name="colorSurfaceNight">#131E19</color>
+    <color name="colorBackgroundNight">#0B1512</color>
 </resources>
