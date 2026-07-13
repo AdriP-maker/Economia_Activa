@@ -34,6 +34,12 @@ class SetupActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            val namePattern = Regex("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+\$")
+            if (!name.matches(namePattern) || !lastname.matches(namePattern)) {
+                Toast.makeText(this, "El nombre y apellido solo deben contener letras", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             try {
                 val salary = salaryStr.toDouble()
                 if (salary <= 0) {
